@@ -13,14 +13,13 @@ import java.util.Map;
 public class CreateCodeUtils {
     public static void main(String[] args) throws Exception {
         String tableName = "account_info";
-        String entityName = StrUtil.toCamelCase(tableName);
-        // java类名首字母大写
-        String UpperObjectName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);
+        String entityName = StrUtil.toCamelCase(tableName);//驼峰命名
+        String UpperObjectName = entityName.substring(0, 1).toUpperCase() + entityName.substring(1);// 首字母大写
 
         Map<String, Object> root = new HashMap<>();
         root.put("datebaseName", tableName);
         root.put("entity", UpperObjectName);
-        root.put("entityName", entityName + "Mapper");
+        root.put("entityName", entityName);
 
         /* 生成query */
         printFile("queryTemplate.ftl", root, UpperObjectName + "Query.java", UpperObjectName + "\\query\\");

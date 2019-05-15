@@ -17,10 +17,19 @@ public interface ${entity + "Service"} {
     Page<${entity + "Model"}> selectByPage(${entity + "Query"} query) throws BizException;
 
     /**
-     * 根据当前表编号查询
-     * @param accountIds
+     * list查询
+     * @param query
      * @return
      * @throws BizException
     */
-    List<${entity + "Model"}> selectByIds(String ids) throws BizException;
+    List<${entity + "Model"}> selectByList(${entity + "Query"} query) throws BizException;
+
+    /**
+     * 对象查询
+     * @param query
+     * @return
+     * @throws BizException
+    */
+    ${entity + "Model"} selectBySingle(${entity + "Query"} query) throws BizException;
+
 }

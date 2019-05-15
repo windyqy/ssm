@@ -47,6 +47,48 @@
         </sql>
     </operation>
 
+    <!--按条件查询list-->
+    <operation id="selectByList" many="true">
+        <params>
+            <#noparse>
+                <param>#{filter,jdbcType=VARCHAR}</param>
+            </#noparse>
+        </params>
+        <sql>
+            <![CDATA[
+            <script>
+                SELECT * FROM ${datebaseName}
+                <#noparse>
+                <if test="filter!=null" >
+                <where> 1=1 ${filter} </where>
+                    </if>
+            </script>
+            ]]>
+            </#noparse>
+        </sql>
+    </operation>
+
+    <!--按条件查询对象-->
+    <operation id="selectBySingle" many="false">
+        <params>
+            <#noparse>
+                <param>#{filter,jdbcType=VARCHAR}</param>
+            </#noparse>
+        </params>
+        <sql>
+            <![CDATA[
+            <script>
+                SELECT * FROM ${datebaseName}
+                <#noparse>
+                <if test="filter!=null" >
+                <where> 1=1 ${filter} </where>
+                    </if>
+            </script>
+            ]]>
+            </#noparse>
+        </sql>
+    </operation>
+
     <!--根据当前表编号查询-->
     <operation id="selectByIds" many="true">
         <params>

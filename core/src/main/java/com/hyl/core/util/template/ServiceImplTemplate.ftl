@@ -13,7 +13,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
     private static final Logger logger = LoggerFactory.getLogger(${entity + "ServiceImpl"}.class);
 
     @Autowired
-    private ${entity + "Mapper"} ${entityName};
+    private ${entity + "Mapper"} ${entityName + "Mapper"};
 
     /**
     * 统计记录行数
@@ -24,7 +24,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
     @Override
     public int count(String sql) throws BizException {
         try{
-            return ${entityName}.count(sql);
+            return ${entityName + "Mapper"}.count(sql);
         } catch (Exception e) {
             throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
         }
@@ -48,7 +48,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
 
             Page<${entity + "Model"}> page = new Page(rows, query.getPageNumber(), query.getPageSize(), null);
             int start = (query.getPageNumber() - 1) * query.getPageSize();
-            List<${entity}> list = ${entityName}.selectByPage(querySql, start, page.getPageSize());
+            List<${entity}> list = ${entityName + "Mapper"}.selectByPage(querySql, start, page.getPageSize());
             List<${entity + "Model"}> modelList = ObjectUtils.buildBatch(${entity + "Model"}.class, list);
 
             //设置枚举值
@@ -56,6 +56,54 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
             return page;
         } catch (Exception e) {
             logger.error("分页查询异常", e);
+            throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
+        }
+    }
+
+    /**
+     * list查询
+     * @param query
+     * @return
+     * @throws BizException
+    */
+    @Override
+    public List<${entity + "Model"}> selectByList(${entity + "Query"} query) throws BizException {
+        try {
+            if (query == null || !query.check())
+                throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
+            logger.info("selectByList查询参数：" + JSON.toJSONString(query));
+            String querySql = SQLGenerateUtils.whereSQLGenerate(query);
+            logger.info("查询记录" + querySql);
+
+            List<${entity}> list = ${entityName + "Mapper"}.selectByList(querySql);
+            List<${entity + "Model"}> modelList = ObjectUtils.buildBatch(${entity + "Model"}.class, list);
+            return modelList;
+        } catch (Exception e) {
+            logger.error("list查询异常", e);
+            throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
+        }
+    }
+
+    /**
+     * 对象查询
+     * @param query
+     * @return
+     * @throws BizException
+    */
+    @Override
+    public ${entity + "Model"} selectBySingle(${entity + "Query"} query) throws BizException {
+        try {
+            if (query == null || !query.check())
+                throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
+            logger.info("selectBySingle查询参数：" + JSON.toJSONString(query));
+            String querySql = SQLGenerateUtils.whereSQLGenerate(query);
+            logger.info("查询记录" + querySql);
+
+            ${entity} obj = memberInfoMapper.selectBySingle(querySql);
+            ${entity + "Model"} model = ObjectUtils.build(${entity + "Model"}.class, obj);
+            return model;
+        } catch (Exception e) {
+            logger.error("对象查询异常", e);
             throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
         }
     }
