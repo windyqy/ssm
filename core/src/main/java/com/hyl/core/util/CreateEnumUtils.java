@@ -8,6 +8,8 @@ import freemarker.template.TemplateException;
 import java.io.*;
 import java.util.*;
 
+import static freemarker.template.Configuration.VERSION_2_3_28;
+
 public class CreateEnumUtils {
     public static void main(String[] args) throws Exception {
         Map<String, Object> map =new HashMap<>();
@@ -56,7 +58,7 @@ public class CreateEnumUtils {
      */
     public static Template getTemplate(String ftlName) throws Exception {
         try {
-            Configuration cfg = new Configuration(); // 通过Freemaker的Configuration读取相应的ftl
+            Configuration cfg = new Configuration(VERSION_2_3_28); // 通过Freemaker的Configuration读取相应的ftl
             cfg.setEncoding(Locale.CHINA, "utf-8");
             cfg.setDirectoryForTemplateLoading(new File(System.getProperty("user.dir")+ "\\core\\src\\main\\java\\com\\hyl\\core\\util\\template\\")); // 设定去哪里读取相应的ftl模板文件
             Template temp = cfg.getTemplate(ftlName); // 在模板文件目录中找到名称为name的文件
