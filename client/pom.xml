@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ssm</artifactId>
+        <groupId>com.hyl</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>client</artifactId>
+    <packaging>war</packaging>
+
+    <name>client</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hyl</groupId>
+            <artifactId>biz</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <!--&lt;!&ndash;模板引擎&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.freemarker</groupId>-->
+            <!--<artifactId>freemarker</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;JSP所需包&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--&lt;!&ndash;<groupId>javax.servlet.jsp.jstl</groupId>&ndash;&gt;-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>jstl</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <build>
+        <finalName>client</finalName>
+        <!--<resources>-->
+        <!--<resource>-->
+        <!--<directory>src/main/resources</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*.properties</include>-->
+        <!--<include>**/*.xml</include>-->
+        <!--<include>**/*.tld</include>-->
+        <!--</includes>-->
+        <!--<filtering>false</filtering>-->
+        <!--</resource>-->
+        <!--<resource>-->
+        <!--<directory>src/main/java</directory>-->
+        <!--<includes>-->
+        <!--<include>**/*.properties</include>-->
+        <!--<include>**/*.xml</include>-->
+        <!--</includes>-->
+        <!--<filtering>false</filtering>-->
+        <!--</resource>-->
+        <!--</resources>-->
+    </build>
+</project>

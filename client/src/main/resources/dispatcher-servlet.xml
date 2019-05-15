@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--开启部分注解-->
+    <context:annotation-config/>
+
+    <!-- 定义扫描区间 -->
+    <context:component-scan base-package="com.hyl" use-default-filters="false">
+        <context:include-filter type="annotation"  expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+    </context:component-scan>
+
+    <!--自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的；并提供数据绑定支持如Jackson。-->
+    <mvc:annotation-driven>
+        <!--jackson配置-->
+        <!--<mvc:message-converters>-->
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+        <!--</mvc:message-converters>-->
+
+        <!--jastjson配置-->
+        <mvc:message-converters register-defaults="true">
+            <!-- 配置Fastjson支持 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="fastJsonConfig">
+                    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+                        <property name="charset" value="UTF-8" />
+                        <property name="serializerFeatures">
+                            <list>
+                                <!-- 避免循环引用 -->
+                                <value>DisableCircularReferenceDetect</value>
+                                <!-- 是否输出值为null的字段 -->
+                                <!-- <value>WriteMapNullValue</value>-->
+                                <!-- 数值字段如果为null,输出为0,而非null -->
+                                 <value>WriteNullNumberAsZero</value>
+                                <!-- 字符类型字段如果为null,输出为"",而非null -->
+                                <value>WriteNullStringAsEmpty</value>
+                                <!-- List字段如果为null,输出为[],而非null -->
+                                <value>WriteNullListAsEmpty</value>
+                                <!-- Boolean字段如果为null,输出为false,而非null -->
+                                <!--  <value>WriteNullBooleanAsFalse</value>-->
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 将静态资源请求转由默认的Servlet处理 -->
+    <mvc:default-servlet-handler/>
+
+    <!--freeMarker解析视图层-->
+    <bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <!--<property name="prefix" value="/WEB-INF/page/"/>-->
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="0"></property>
+        <!-- redirect[https to https, http to http] -->
+        <property name="redirectHttp10Compatible" value="false" />
+        <property name="contentType" value="text/html; charset=UTF-8" />
+    </bean>
+
+    <!--jsp解析视图层-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="1"></property>
+    </bean>
+</beans>
