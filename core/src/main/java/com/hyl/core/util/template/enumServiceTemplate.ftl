@@ -8,14 +8,13 @@ import java.util.List;
  */
 public interface CommonEnumService {
     <#if enumList??>
-        asd
     <#list enumList as e>
     /**
-        ${e}
      * ${e.memo}
      * @return
      */
     List<${e.name}> ${"get" + e.name + "s"}();
+
     </#list>
     </#if>
 }

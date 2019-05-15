@@ -14,16 +14,15 @@ import java.util.List;
 @Component
 public class CommonEnumServiceImpl implements CommonEnumService {
     <#if enumList??>
-        asd
     <#list enumList as e>
     /**
      * ${e.memo}
-     *
      * @return
      */
     public List<${e.name}> ${"get" + e.name + "s"}() {
         return Arrays.asList(${e.name}.values());
     }
+
     </#list>
     </#if>
 }

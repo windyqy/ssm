@@ -1,5 +1,6 @@
 package com.hyl.core.util;
 
+import com.hyl.core.util.template.EnumObject;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -10,17 +11,17 @@ import java.util.*;
 public class CreateEnumUtils {
     public static void main(String[] args) throws Exception {
         Map<String, Object> map =new HashMap<>();
-        List<enumObject> list = new ArrayList<>();
-        list.add(new enumObject("AccountTypeEnum", "账户类型"));
-        list.add(new enumObject("ActiveStateEnum", "活动状态"));
-        list.add(new enumObject("CardTypeEnum", "银行卡类型"));
-        list.add(new enumObject("CurrencyEnum", "交易币种"));
-        list.add(new enumObject("FeeTypeEnum", "交易手续费费率收取类别"));
-        list.add(new enumObject("TransactionObjectTypeEnum", "交易的主体类型"));
-        list.add(new enumObject("TransactionTypeEnum", "交易类型"));
-        list.add(new enumObject("MerchantGradeEnum", "商户等级或代理等级"));
-        list.add(new enumObject("RegisterStateEnum", "审核状态"));
-        list.add(new enumObject("PaymentStatusEnum", "订单的交易状态"));
+        List<EnumObject> list = new ArrayList<>();
+        list.add(new EnumObject("AccountTypeEnum", "账户类型"));
+        list.add(new EnumObject("ActiveStateEnum", "活动状态"));
+        list.add(new EnumObject("CardTypeEnum", "银行卡类型"));
+        list.add(new EnumObject("CurrencyEnum", "交易币种"));
+        list.add(new EnumObject("FeeTypeEnum", "交易手续费费率收取类别"));
+        list.add(new EnumObject("TransactionObjectTypeEnum", "交易的主体类型"));
+        list.add(new EnumObject("TransactionTypeEnum", "交易类型"));
+        list.add(new EnumObject("MerchantGradeEnum", "商户等级或代理等级"));
+        list.add(new EnumObject("RegisterStateEnum", "审核状态"));
+        list.add(new EnumObject("PaymentStatusEnum", "订单的交易状态"));
         map.put("enumList",list);
 
         /* 生成enum的Service */
@@ -64,31 +65,5 @@ public class CreateEnumUtils {
             e.printStackTrace();
         }
         return null;
-    }
-
-    static class enumObject implements Serializable {
-        private String name;
-        private String memo;
-
-        public enumObject(String name, String memo) {
-            this.name = name;
-            this.memo = memo;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getMemo() {
-            return memo;
-        }
-
-        public void setMemo(String memo) {
-            this.memo = memo;
-        }
     }
 }
