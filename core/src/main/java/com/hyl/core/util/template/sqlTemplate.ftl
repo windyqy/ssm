@@ -88,25 +88,4 @@
             </#noparse>
         </sql>
     </operation>
-
-    <!--根据当前表编号查询-->
-    <operation id="selectByIds" many="true">
-        <params>
-            <#noparse>
-            <param>#{accountIds,jdbcType=VARCHAR}</param>
-            </#noparse>
-        </params>
-        <sql>
-            <![CDATA[
-            <script>
-                select DISTINCT * from account_info
-                <#noparse>
-                <if test = " accountIds !=null">
-                    where account_id in (${ids})
-                </if>
-                </#noparse>
-            </script>
-            ]]>
-        </sql>
-    </operation>
 </table>

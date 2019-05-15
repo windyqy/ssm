@@ -31,5 +31,4 @@ public interface ${entity + "Service"} {
      * @throws BizException
     */
     ${entity + "Model"} selectBySingle(${entity + "Query"} query) throws BizException;
-
 }
