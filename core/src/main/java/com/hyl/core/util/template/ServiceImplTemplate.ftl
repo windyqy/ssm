@@ -69,7 +69,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
     @Override
     public List<${entity + "Model"}> selectByList(${entity + "Query"} query) throws BizException {
         try {
-            if (query == null || !query.check())
+            if (query == null)
                 throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
             logger.info("selectByList查询参数：" + JSON.toJSONString(query));
             String querySql = SQLGenerateUtils.whereSQLGenerate(query);
@@ -93,7 +93,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
     @Override
     public ${entity + "Model"} selectBySingle(${entity + "Query"} query) throws BizException {
         try {
-            if (query == null || !query.check())
+            if (query == null)
                 throw new BizException(ErrorCode.DATABASE_QUERY_ERROR);
             logger.info("selectBySingle查询参数：" + JSON.toJSONString(query));
             String querySql = SQLGenerateUtils.whereSQLGenerate(query);
