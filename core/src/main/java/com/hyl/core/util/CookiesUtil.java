@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 该类可以从浏览器请求中提取出cookies并进行对cookis的相关操作
  */
-public class CookiesUtils {
+public class CookiesUtil {
 
     /**
      * 根据名字获取cookie

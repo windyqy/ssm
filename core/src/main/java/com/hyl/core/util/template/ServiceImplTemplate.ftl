@@ -44,7 +44,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
             logger.info("selectByPage查询参数：" + JSON.toJSONString(query));
             String querySql = SQLGenerateUtils.whereSQLGenerate(query);
             logger.info("查询记录" + querySql);
-            int rows = ${entityName}.count(querySql);
+            int rows = ${entityName + "Mapper"}.count(querySql);
 
             Page<${entity + "Model"}> page = new Page(rows, query.getPageNumber(), query.getPageSize(), null);
             int start = (query.getPageNumber() - 1) * query.getPageSize();
@@ -99,7 +99,7 @@ public class ${entity + "ServiceImpl"} implements ${entity + "Service"} {
             String querySql = SQLGenerateUtils.whereSQLGenerate(query);
             logger.info("查询记录" + querySql);
 
-            ${entity} obj = memberInfoMapper.selectBySingle(querySql);
+            ${entity} obj = ${entityName + "Mapper"}.selectBySingle(querySql);
             ${entity + "Model"} model = ObjectUtils.build(${entity + "Model"}.class, obj);
             return model;
         } catch (Exception e) {
