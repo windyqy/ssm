@@ -1,10 +1,10 @@
-package com.hyl.biz.service;
+package com.hyl.biz.dao;
 
 import com.hyl.biz.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserMapper {
     public List<User> userListOne(User user);
 
     public int userAdd(User user);
