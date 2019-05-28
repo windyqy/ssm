@@ -1,6 +1,6 @@
 package com.hyl.biz.model;
 
-public class HouseImages {
+public class HouseImages extends BaseModel{
     private String img_id;
     private String img_url;
     private String id;

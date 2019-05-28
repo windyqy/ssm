@@ -4,7 +4,7 @@ import com.hyl.biz.Enum.OrderStatus;
 
 import java.sql.Date;
 
-public class Order extends BaseModel {
+public class Order extends BaseModel{
     private String id;
     private String userId;
     private String houseId;

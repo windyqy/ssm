@@ -3,7 +3,7 @@ package com.hyl.biz.model;
 import com.hyl.biz.Enum.HouseStatus;
 import com.hyl.biz.Enum.LeaseType;
 
-public class House {
+public class House extends BaseModel{
     private String id;
     /**
      * 区域

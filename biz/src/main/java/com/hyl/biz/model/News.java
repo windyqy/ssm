@@ -2,7 +2,7 @@ package com.hyl.biz.model;
 
 import java.sql.Date;
 
-public class News extends BaseModel {
+public class News extends BaseModel{
     private String id;
     private String titie;
     private String content;
